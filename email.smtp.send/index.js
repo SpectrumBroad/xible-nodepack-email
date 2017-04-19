@@ -25,14 +25,12 @@ module.exports = function(NODE) {
 
 							if (err) {
 
-								err = err.toString();
-
 								NODE.addStatus({
-									message: err,
+									message: err.toString(),
 									color: 'red'
 								});
 
-								NODE.fail(err, state);
+								NODE.error(err, state);
 
 							}
 
