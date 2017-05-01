@@ -9,42 +9,39 @@ module.exports = function(NODE) {
 	//return reference glow
 	triggerIn.on('trigger', (conn, state) => {
 
-		serverIn.getValues(state).then((servers) => {
+		Promise.all([serverIn.getValues(state), messageIn.getValues(state)])
+			.then(([servers, messages]) => {
+				const total = servers.length * messages.length;
+				let sent = 0;
 
-			messageIn.getValues(state).then((messages) => {
+				function onSent() {
+					if(++sent === total) {
+						doneOut.trigger(state);
+					}
+				}
 
 				servers.forEach((server) => {
 
 					messages.forEach((message) => {
 
 						if (!message.from || (!message.to && !message.cc && !message.bcc) || !message.subject) {
+							onSent();
 							return;
 						}
 
 						server.sendMail(message, (err) => {
-
 							if (err) {
-
-								NODE.addStatus({
-									message: err.toString(),
-									color: 'red'
-								});
-
 								NODE.error(err, state);
-
+								return;
 							}
-
+							onSent();
 						});
 
 					});
 
 				});
 
-				doneOut.trigger(state);
-
 			});
-
-		});
 
 	});
 
