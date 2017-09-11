@@ -6,10 +6,10 @@
     "trigger": {
       "type": "trigger"
     },
-    "server": {
+    "servers": {
       "type": "email.smtp.server"
     },
-    "message": {
+    "messages": {
       "type": "email.message"
     }
   },

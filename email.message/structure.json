@@ -16,13 +16,16 @@
       "type": "string"
     },
     "subject": {
-      "type": "string"
+      "type": "string",
+      "maxConnectors": 1
     },
     "text": {
-      "type": "string"
+      "type": "string",
+      "maxConnectors": 1
     },
     "html": {
-      "type": "string"
+      "type": "string",
+      "maxConnectors": 1
     }
   },
   "outputs": {
