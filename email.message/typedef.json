@@ -1,0 +1,6 @@
+{
+  "email.message": {
+    "color": "darkmagenta",
+    "extends": "object"
+  }
+}

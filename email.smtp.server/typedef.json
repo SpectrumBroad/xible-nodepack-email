@@ -1,0 +1,6 @@
+{
+  "email.smtp.server": {
+    "color": "mediumorchid",
+    "extends": "object"
+  }
+}
